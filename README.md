@@ -1,15 +1,20 @@
 # Follina Web Server
 
-Simple PowerShell web server to test Follina by popping calc. When running, URL can be accessed by: http://localhost:8081/payload.html
+Simple PowerShell web server to assist in POC Follina testing by popping calc. 
+When running, by default URL can be accessed via: http://localhost:8081/payload.html
+
+References:
+https://github.com/JMousqueton/PoC-CVE-2022-30190 - Good resource on creating your own POC
+https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/creating-powershell-web-server - Base code for powershell web server
+
 
 ```powershell
-# enter this URL to reach PowerShell’s web server
+# enter this URL to reach PowerShell's web server
 $url = 'http://localhost:8081/'
 
 # HTML content for some URLs entered by the user
 $htmlcontents = @{
-
-############# GET /payload.html
+############# GET /payload.html (to pop calc)
 "GET /payload.html"  =  @'    
 <!doctype html>
 <html lang="en">
@@ -22,8 +27,7 @@ $htmlcontents = @{
 </body>
 </html>
 '@;
-
-############# GET /
+############# GET / (Root)
 'GET /' = @'   
 <!doctype html>
 <html lang="en">
@@ -77,6 +81,4 @@ finally
 }
 ```
 
-References: 
-https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/creating-powershell-web-server
-https://github.com/JMousqueton/PoC-CVE-2022-30190
+
